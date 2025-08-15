@@ -1,9 +1,15 @@
 from typing import Any
 
+
 import httpx
-from a2a.client import ClientConfig, ClientFactory, create_text_message_object
+from a2a.client import ClientConfig, ClientFactory, ClientCallContext
 from a2a.types import (AgentCard, TransportProtocol, )
 from a2a.utils.constants import AGENT_CARD_WELL_KNOWN_PATH
+from a2a.types import Message, Part, Role, TextPart
+
+from uuid import uuid4
+
+from a2a.types import Message, Part, Role, TextPart
 
 
 
@@ -13,7 +19,7 @@ class A2ASimpleClient:
         self._agent_info_cache: dict[str, dict[str, Any] | None] = {}
         self.default_timeout = default_timeout
 
-    async def create_task(self, agent_url: str, message: str) -> str:
+    async def create_task(self, agent_url: str, message: str, context_id:str) -> str:
         """Send a message following the official A2A SDK pattern."""
         # Configure httpx client with timeout
         timeout_config = httpx.Timeout(
@@ -55,15 +61,10 @@ class A2ASimpleClient:
 
             factory = ClientFactory(config)
             client = factory.create(agent_card)
-
-            # Create the message object
-            message_obj = create_text_message_object(content=message)
-
-            # Send the message and collect responses
+            message_obj= Message(role=Role.user, parts=[Part(TextPart(text=message))], message_id=str(uuid4()), context_id=context_id)
             responses = []
             async for response in client.send_message(message_obj):
                 responses.append(response)
-
             # The response is a tuple - get the first element (Task object)
             if (
                     responses

@@ -9,10 +9,11 @@ Each agent is served at a **unique URL path**, making it possible to host differ
 
 Two agents running on the same host:
 
-| Agent Name | URL |
-|------------|-----|
-| Trending   | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json) |
-| Analyzer   | [http://localhost:8000/a2a/analyzer/.well-known/agent-card.json](http://localhost:8000/a2a/analyzer/.well-known/agent-card.json) |
+| Agent Name            | URL |
+|-----------------------|-----|
+| Conversational Agent  | [http://localhost:8000/a2a/conversation/.well-known/agent-card.json](http://localhost:8000/a2a/conversation/.well-known/agent-card.json) |
+| Trending topics Agent | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json) |
+| Analyzer Agent        | [http://localhost:8000/a2a/analyzer/.well-known/agent-card.json](http://localhost:8000/a2a/analyzer/.well-known/agent-card.json) |
 
 
 ---
@@ -57,7 +58,6 @@ uv run a2a_client_app.py
 ## 📂 Project Structure
 
 ```text
-a2a-multiple-agents-on-single-host/
 ├── README.md
 ├── a2a_client_app.py
 ├── main.py
@@ -71,6 +71,7 @@ a2a-multiple-agents-on-single-host/
 │ └── agent
 │     ├── __init__.py
 │     ├── analyzer_agent.py
+│     ├── conversation_agent.py
 │     └── trending_topics_agent.py
 └── uv.lock
 

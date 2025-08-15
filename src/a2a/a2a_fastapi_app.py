@@ -25,8 +25,13 @@ from starlette.applications import Starlette
 
 
 def get_agent_request_handler(agent: LlmAgent):
-    runner = Runner(app_name=agent.name, agent=agent, artifact_service=InMemoryArtifactService(),
-                    session_service=InMemorySessionService(), memory_service=InMemoryMemoryService(), )
+    runner = Runner(
+        app_name=agent.name,
+        agent=agent,
+        artifact_service=InMemoryArtifactService(),
+        session_service=InMemorySessionService(),
+        memory_service=InMemoryMemoryService()
+    )
     config = A2aAgentExecutorConfig()
     executor = A2aAgentExecutor(runner=runner, config=config)
     return DefaultRequestHandler(agent_executor=executor, task_store=InMemoryTaskStore())
