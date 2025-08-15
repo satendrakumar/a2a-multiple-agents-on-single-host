@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from src.a2a.a2a_fastapi_app import A2AFastApiApp, get_agent_request_handler
 from src.agent.analyzer_agent import analyzer_agent, get_analyzer_agent_card
+from src.agent.conversation_agent import get_conversational_agent_card, conversational_agent
 from src.agent.trending_topics_agent import trending_topics_agent, get_trending_topics_agent_card
 
 load_dotenv()
@@ -28,8 +29,12 @@ async def health_check() -> dict[str, str]:
     return {"status": "ok"}
 
 
-trending_agent_request_handler = get_agent_request_handler(trending_topics_agent)
+conversation_agent_request_handler = get_agent_request_handler(conversational_agent)
+conversational_agent_card = get_conversational_agent_card(f"{AGENT_BASE_URL}/conversation/")
+conversational_agent_server = A2AFastApiApp(fastapi_app=app, agent_card=conversational_agent_card, http_handler=conversation_agent_request_handler)
+conversational_agent_server.build(rpc_url="/conversation/", agent_card_url="/conversation/.well-known/agent-card.json")
 
+trending_agent_request_handler = get_agent_request_handler(trending_topics_agent)
 trending_topics_agent_card = get_trending_topics_agent_card(f"{AGENT_BASE_URL}/trending/")
 trending_agent_server = A2AFastApiApp(fastapi_app=app, agent_card=trending_topics_agent_card,
                                       http_handler=trending_agent_request_handler)
