@@ -9,11 +9,11 @@ Each agent is served at a **unique URL path**, making it possible to host differ
 
 Three agents running on the same host:
 
-| Agent Name            | Agent card URL                                                                                                                           |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| Conversational Agent  | [http://localhost:8000/a2a/conversation/.well-known/agent-card.json](http://localhost:8000/a2a/conversation/.well-known/agent-card.json) |
-| Trending topics Agent | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json)         |
-| Analyzer Agent        | [http://localhost:8000/a2a/analyzer/.well-known/agent-card.json](http://localhost:8000/a2a/analyzer/.well-known/agent-card.json)         |
+| Agent Name            | Agent card URL                                                                                                    |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------|
+| Conversational Agent  | [http://localhost:8000/a2a/conversation/agent-card.json](http://localhost:8000/a2a/conversation/agent-card.json) |
+| Trending topics Agent | [http://localhost:8000/a2a/trending/agent-card.json](http://localhost:8000/a2a/trending/agent-card.json) |
+| Analyzer Agent        | [http://localhost:8000/a2a/analyzer/agent-card.json](http://localhost:8000/a2a/analyzer/agent-card.json) |
 
 
 ---
