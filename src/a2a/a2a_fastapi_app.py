@@ -62,7 +62,7 @@ class A2AFastApiApp(JSONRPCApplication):
         router = APIRouter()
         router.add_api_route(rpc_url, endpoint=self._handle_requests, name=f'{name_prefix}_a2a_handler',
                              methods=['POST'])
-        router.add_api_route(agent_card_url, self._handle_get_agent_card, methods=['GET'],
+        router.add_api_route(agent_card_url , endpoint=self._handle_get_agent_card, methods=['GET'],
                              name=f'{name_prefix}_agent_card')
         self.fastapi_app.include_router(router)
         return self.fastapi_app

@@ -4,14 +4,13 @@ from typing import Any
 import httpx
 from a2a.client import ClientConfig, ClientFactory, ClientCallContext
 from a2a.types import (AgentCard, TransportProtocol, )
-from a2a.utils.constants import AGENT_CARD_WELL_KNOWN_PATH
 from a2a.types import Message, Part, Role, TextPart
 
 from uuid import uuid4
 
 from a2a.types import Message, Part, Role, TextPart
 
-
+AGENT_CARD_PATH = '/agent-card.json'
 
 class A2ASimpleClient:
     def __init__(self, default_timeout: float = 240.0):
@@ -40,7 +39,7 @@ class A2ASimpleClient:
             else:
                 # Fetch the agent card
                 agent_card_response = await httpx_client.get(
-                    f'{agent_url}{AGENT_CARD_WELL_KNOWN_PATH}'
+                    f'{agent_url}{AGENT_CARD_PATH}'
                 )
                 agent_card_data = self._agent_info_cache[agent_url] = (
                     agent_card_response.json()

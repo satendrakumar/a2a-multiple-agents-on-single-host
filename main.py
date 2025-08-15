@@ -32,19 +32,19 @@ async def health_check() -> dict[str, str]:
 conversation_agent_request_handler = get_agent_request_handler(conversational_agent)
 conversational_agent_card = get_conversational_agent_card(f"{AGENT_BASE_URL}/conversation/")
 conversational_agent_server = A2AFastApiApp(fastapi_app=app, agent_card=conversational_agent_card, http_handler=conversation_agent_request_handler)
-conversational_agent_server.build(rpc_url="/conversation/", agent_card_url="/conversation/.well-known/agent-card.json")
+conversational_agent_server.build(rpc_url="/conversation/", agent_card_url="/conversation/{path:path}")
 
 trending_agent_request_handler = get_agent_request_handler(trending_topics_agent)
 trending_topics_agent_card = get_trending_topics_agent_card(f"{AGENT_BASE_URL}/trending/")
 trending_agent_server = A2AFastApiApp(fastapi_app=app, agent_card=trending_topics_agent_card,
                                       http_handler=trending_agent_request_handler)
-trending_agent_server.build(rpc_url="/trending/", agent_card_url="/trending/.well-known/agent-card.json")
+trending_agent_server.build(rpc_url="/trending/", agent_card_url="/trending/{path:path}") # {path:path} added to handle for both 'agent-card.json' and '/.well-known/agent-card.json'
 
 analyzer_agent_request_handler = get_agent_request_handler(analyzer_agent)
 analyzer_agent_card = get_analyzer_agent_card(f"{AGENT_BASE_URL}/analyzer/")
 analyzer_agent_server = A2AFastApiApp(fastapi_app=app, agent_card=analyzer_agent_card,
                                       http_handler=analyzer_agent_request_handler)
-analyzer_agent_server.build(rpc_url="/analyzer/", agent_card_url="/analyzer/.well-known/agent-card.json")
+analyzer_agent_server.build(rpc_url="/analyzer/", agent_card_url="/analyzer/{path:path}")
 
 if __name__ == '__main__':
     uvicorn.run(app, host="0.0.0.0", port=8000)
