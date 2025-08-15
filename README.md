@@ -9,7 +9,7 @@ Each agent is served at a **unique URL path**, making it possible to host differ
 
 Three agents running on the same host:
 
-| Agent Name            | CARD URL                                                                                                                                 |
+| Agent Name            | Agent card URL                                                                                                                           |
 |-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | Conversational Agent  | [http://localhost:8000/a2a/conversation/.well-known/agent-card.json](http://localhost:8000/a2a/conversation/.well-known/agent-card.json) |
 | Trending topics Agent | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json)         |
