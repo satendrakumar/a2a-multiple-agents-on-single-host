@@ -1,16 +1,17 @@
 # a2a-multiple-agents-on-single-host
 
 ### Run agents on local:
+
 ```shell
+git clone https://github.com/satendrakumar/a2a-multiple-agents-on-single-host.git
 cd a2a-multiple-agents-on-single-host
 uv sync
-export AGENT_URL=http://localhost:8000/a2a/
-export GOOGLE_GENAI_USE_VERTEXAI=FALSE
-export GOOGLE_API_KEY=********************
+# rename .env-sample into .env and update the env params
 uv run main.py
 ```
 
 ### Test agents:
+
 ```shell
 uv run a2a_client_app.py
 ```
