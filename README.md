@@ -7,13 +7,13 @@ Each agent is served at a **unique URL path**, making it possible to host differ
 
 ## 📌 Example Setup
 
-Two agents running on the same host:
+Three agents running on the same host:
 
-| Agent Name            | URL |
-|-----------------------|-----|
+| Agent Name            | CARD URL                                                                                                                                 |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | Conversational Agent  | [http://localhost:8000/a2a/conversation/.well-known/agent-card.json](http://localhost:8000/a2a/conversation/.well-known/agent-card.json) |
-| Trending topics Agent | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json) |
-| Analyzer Agent        | [http://localhost:8000/a2a/analyzer/.well-known/agent-card.json](http://localhost:8000/a2a/analyzer/.well-known/agent-card.json) |
+| Trending topics Agent | [http://localhost:8000/a2a/trending/.well-known/agent-card.json](http://localhost:8000/a2a/trending/.well-known/agent-card.json)         |
+| Analyzer Agent        | [http://localhost:8000/a2a/analyzer/.well-known/agent-card.json](http://localhost:8000/a2a/analyzer/.well-known/agent-card.json)         |
 
 
 ---
