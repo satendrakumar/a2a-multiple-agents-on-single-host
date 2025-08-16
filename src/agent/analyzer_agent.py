@@ -1,12 +1,13 @@
-from a2a.types import AgentCard, AgentCapabilities, TransportProtocol, AgentSkill
 from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
+
+from a2a.types import AgentCapabilities, AgentCard, AgentSkill, TransportProtocol
 
 
 def get_analyzer_agent(model: str) -> LlmAgent:
     return LlmAgent(
         model=model,
-        name='trend_analyzer_agent',
+        name="trend_analyzer_agent",
         instruction="""
         You are a data analyst specializing in trend analysis. When given a trending topic,
         perform deep research to find quantitative data and insights.
@@ -30,24 +31,24 @@ def get_analyzer_agent(model: str) -> LlmAgent:
 
 def get_analyzer_agent_card(agent_url: str) -> AgentCard:
     return AgentCard(
-        name='Trend Analyzer Agent',
+        name="Trend Analyzer Agent",
         url=agent_url,
-        description='Performs deep analysis of trends with quantitative data',
-        version='1.0',
+        description="Performs deep analysis of trends with quantitative data",
+        version="1.0",
         capabilities=AgentCapabilities(streaming=True),
-        default_input_modes=['text/plain'],
-        default_output_modes=['text/plain'],
+        default_input_modes=["text/plain"],
+        default_output_modes=["text/plain"],
         preferred_transport=TransportProtocol.jsonrpc,
         skills=[
             AgentSkill(
-                id='analyze_trend',
-                name='Analyze Trend',
-                description='Provides quantitative analysis of a specific trend',
-                tags=['analysis', 'data', 'metrics', 'statistics'],
+                id="analyze_trend",
+                name="Analyze Trend",
+                description="Provides quantitative analysis of a specific trend",
+                tags=["analysis", "data", "metrics", "statistics"],
                 examples=[
-                    'Analyze the #ClimateChange trend',
-                    'Get metrics for the Taylor Swift trend',
-                    'Provide data analysis for AI adoption trend',
+                    "Analyze the #ClimateChange trend",
+                    "Get metrics for the Taylor Swift trend",
+                    "Provide data analysis for AI adoption trend",
                 ],
             )
         ],
