@@ -9,7 +9,7 @@ from a2a.types import AgentCard, Message, Part, Role, TextPart, TransportProtoco
 AGENT_CARD_PATH = "/agent-card.json"
 
 
-class A2ASimpleClient:
+class A2AClient:
     def __init__(self, default_timeout: float = 240.0):
         # Cache for agent metadata
         self._agent_info_cache: dict[str, dict[str, Any] | None] = {}

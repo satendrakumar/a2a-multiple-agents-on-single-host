@@ -1,11 +1,11 @@
 import asyncio
 import uuid
 
-from src.a2a.a2a_client import A2ASimpleClient
+from src.a2a.a2a_client import A2AClient
 
 
 async def main():
-    a2a_client: A2ASimpleClient = A2ASimpleClient()
+    a2a_client: A2AClient = A2AClient()
     agent_host_url = "http://localhost:8000/a2a"
 
     trending_task = a2a_client.create_task(
@@ -23,10 +23,7 @@ async def main():
     print(trending_topics)
     print(analysis)
 
-    print(
-        "###############################################################################################################"
-    )
-    print("Multi-turn conversation with an agent............................")
+    print("Multi-turn conversation with an agent...................")
     context_id = str(uuid.uuid4())
     print(f"Starting conversation with context_id: {context_id}")
 
