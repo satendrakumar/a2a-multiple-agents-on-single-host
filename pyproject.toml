@@ -8,3 +8,149 @@ dependencies = [
     "a2a-sdk>=0.3.1",
     "google-adk>=1.11.0",
 ]
+
+[dependency-groups]
+dev = [
+    "isort>=6.0.1",
+    "mypy>=1.17.1",
+    "ruff>=0.12.9",
+]
+
+
+[tool.isort]
+combine_as_imports = true
+include_trailing_comma = true
+line_length = 120
+multi_line_output = 3
+order_by_type = false
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+warn_unused_ignores = true
+
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+check_untyped_defs = false
+disallow_untyped_calls = false
+disallow_untyped_defs = false
+disable_error_code = "annotation-unchecked"
+
+
+[tool.ruff]
+
+exclude = [
+    "**/*.ipynb",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+
+line-length = 120
+indent-width = 4
+
+# Assume Python 3.13
+target-version = "py313"
+
+[tool.ruff.lint]
+
+select = [
+    "B904",
+    "E4",
+    "E7",
+    "E9",
+    "PT009",
+    "TRY201",
+    "B",
+    "C",
+    "E",
+    "F",
+    "F",
+    "I",
+    "N",
+    "PT",
+    "Q",
+    "S",
+    "T",
+    "TID",
+    "W",
+]
+
+ignore = [
+    "S101",
+    "PT006",
+    "T201",
+    "N999",
+]
+extend-select = ["I"]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["TID251"]
+"setup.py" = ["TID251"]
+
+
+[tool.ruff.lint.isort]
+case-sensitive = false
+combine-as-imports = true
+force-sort-within-sections = false
+known-first-party = []
+known-third-party = []
+lines-after-imports = -1
+order-by-type = false
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder"
+]
+
+[tool.ruff.format]
+
+quote-style = "double"
+
+indent-style = "space"
+
+skip-magic-trailing-comma = false
+
+line-ending = "auto"
+
+docstring-code-format = false
+
+docstring-code-line-length = "dynamic"

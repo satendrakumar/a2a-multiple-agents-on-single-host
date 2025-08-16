@@ -1,12 +1,13 @@
-from a2a.types import AgentCard, AgentCapabilities, TransportProtocol, AgentSkill
 from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
+
+from a2a.types import AgentCapabilities, AgentCard, AgentSkill, TransportProtocol
 
 
 def get_trending_topics_agent(model: str) -> LlmAgent:
     return LlmAgent(
         model=model,
-        name='trending_topics_agent',
+        name="trending_topics_agent",
         instruction="""
     You are a social media trends analyst. Your job is to search the web for current trending topics,
     particularly from social platforms.
@@ -47,24 +48,24 @@ def get_trending_topics_agent(model: str) -> LlmAgent:
 
 def get_trending_topics_agent_card(agent_url: str) -> AgentCard:
     return AgentCard(
-        name='Trending Topics Agent',
+        name="Trending Topics Agent",
         url=agent_url,
-        description='Searches the web for current trending topics from social media',
-        version='1.0',
+        description="Searches the web for current trending topics from social media",
+        version="1.0",
         capabilities=AgentCapabilities(streaming=True),
-        default_input_modes=['text/plain'],
-        default_output_modes=['text/plain'],
+        default_input_modes=["text/plain"],
+        default_output_modes=["text/plain"],
         preferred_transport=TransportProtocol.jsonrpc,
         skills=[
             AgentSkill(
-                id='find_trends',
-                name='Find Trending Topics',
-                description='Searches for current trending topics on social media',
-                tags=['trends', 'social media', 'twitter', 'current events'],
+                id="find_trends",
+                name="Find Trending Topics",
+                description="Searches for current trending topics on social media",
+                tags=["trends", "social media", "twitter", "current events"],
                 examples=[
                     "What's trending today?",
-                    'Show me current Twitter trends',
-                    'What are people talking about on social media?',
+                    "Show me current Twitter trends",
+                    "What are people talking about on social media?",
                 ],
             )
         ],

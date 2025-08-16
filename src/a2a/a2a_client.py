@@ -2,11 +2,11 @@ from typing import Any
 from uuid import uuid4
 
 import httpx
-from a2a.client import ClientConfig, ClientFactory
-from a2a.types import AgentCard, TransportProtocol
-from a2a.types import Message, Part, Role, TextPart
 
-AGENT_CARD_PATH = '/agent-card.json'
+from a2a.client import ClientConfig, ClientFactory
+from a2a.types import AgentCard, Message, Part, Role, TextPart, TransportProtocol
+
+AGENT_CARD_PATH = "/agent-card.json"
 
 
 class A2ASimpleClient:
@@ -28,19 +28,12 @@ class A2ASimpleClient:
 
         async with httpx.AsyncClient(timeout=timeout_config) as httpx_client:
             # Check if we have cached agent card data
-            if (
-                    agent_url in self._agent_info_cache
-                    and self._agent_info_cache[agent_url] is not None
-            ):
+            if agent_url in self._agent_info_cache and self._agent_info_cache[agent_url] is not None:
                 agent_card_data = self._agent_info_cache[agent_url]
             else:
                 # Fetch the agent card
-                agent_card_response = await httpx_client.get(
-                    f'{agent_url}{AGENT_CARD_PATH}'
-                )
-                agent_card_data = self._agent_info_cache[agent_url] = (
-                    agent_card_response.json()
-                )
+                agent_card_response = await httpx_client.get(f"{agent_url}{AGENT_CARD_PATH}")
+                agent_card_data = self._agent_info_cache[agent_url] = agent_card_response.json()
 
             # Create AgentCard from data
             agent_card = AgentCard(**agent_card_data)
@@ -57,17 +50,17 @@ class A2ASimpleClient:
 
             factory = ClientFactory(config)
             client = factory.create(agent_card)
-            message_obj = Message(role=Role.user, parts=[Part(TextPart(text=message))], message_id=str(uuid4()),
-                                  context_id=context_id)
+            message_obj = Message(
+                role=Role.user,
+                parts=[Part(TextPart(text=message))],
+                message_id=str(uuid4()),
+                context_id=context_id,
+            )
             responses = []
             async for response in client.send_message(message_obj):
                 responses.append(response)
             # The response is a tuple - get the first element (Task object)
-            if (
-                    responses
-                    and isinstance(responses[0], tuple)
-                    and len(responses[0]) > 0
-            ):
+            if responses and isinstance(responses[0], tuple) and len(responses[0]) > 0:
                 task = responses[0][0]  # First element of the tuple
 
                 # Extract text: task.artifacts[0].parts[0].root.text
@@ -76,4 +69,4 @@ class A2ASimpleClient:
                 except (AttributeError, IndexError):
                     return str(task)
 
-            return 'No response received'
+            return "No response received"
