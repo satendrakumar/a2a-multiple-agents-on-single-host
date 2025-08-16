@@ -1,4 +1,4 @@
-# a2a-multiple-agents-on-single-host
+# multiple-agents-on-single-a2a-server
 
 This repository demonstrates how to run **multiple A2A agents** on the **same host** using the A2A protocol.
 Each agent is served at a **unique URL path**, making it possible to host different agents without requiring multiple servers or ports.
@@ -22,8 +22,8 @@ Three agents running on the same host:
 
 1.  Clone the repository
     ```bash
-    git clone https://github.com/satendrakumar/a2a-multiple-agents-on-single-host.git
-    cd a2a-multiple-agents-on-single-host
+    git clone https://github.com/satendrakumar/multiple-agents-on-single-a2a-server.git
+    cd multiple-agents-on-single-a2a-server
     ```
 
 2.  Install dependencies (using uv)

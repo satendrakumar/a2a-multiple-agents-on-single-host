@@ -8,7 +8,7 @@ async def main():
     a2a_client: A2ASimpleClient = A2ASimpleClient()
     agent_host_url = "http://localhost:8000/a2a"
 
-    trending_task = a2a_client.create_task(agent_url=f'{agent_host_url}/trending', message="What's trending today?",
+    trending_task = a2a_client.create_task(agent_url=f'{agent_host_url}/trending_topics', message="What's trending today?",
                                            context_id=str(uuid.uuid4()))
     analysis_task = a2a_client.create_task(agent_url=f"{agent_host_url}/analyzer",
                                            message="Analyze the trend AI in Social Media", context_id=str(uuid.uuid4()))

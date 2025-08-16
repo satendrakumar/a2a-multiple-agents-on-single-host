@@ -1,16 +1,13 @@
 from typing import Any
-
-
-import httpx
-from a2a.client import ClientConfig, ClientFactory, ClientCallContext
-from a2a.types import (AgentCard, TransportProtocol, )
-from a2a.types import Message, Part, Role, TextPart
-
 from uuid import uuid4
 
+import httpx
+from a2a.client import ClientConfig, ClientFactory
+from a2a.types import AgentCard, TransportProtocol
 from a2a.types import Message, Part, Role, TextPart
 
 AGENT_CARD_PATH = '/agent-card.json'
+
 
 class A2ASimpleClient:
     def __init__(self, default_timeout: float = 240.0):
@@ -18,7 +15,7 @@ class A2ASimpleClient:
         self._agent_info_cache: dict[str, dict[str, Any] | None] = {}
         self.default_timeout = default_timeout
 
-    async def create_task(self, agent_url: str, message: str, context_id:str) -> str:
+    async def create_task(self, agent_url: str, message: str, context_id: str) -> str:
         """Send a message following the official A2A SDK pattern."""
         # Configure httpx client with timeout
         timeout_config = httpx.Timeout(
@@ -60,7 +57,8 @@ class A2ASimpleClient:
 
             factory = ClientFactory(config)
             client = factory.create(agent_card)
-            message_obj= Message(role=Role.user, parts=[Part(TextPart(text=message))], message_id=str(uuid4()), context_id=context_id)
+            message_obj = Message(role=Role.user, parts=[Part(TextPart(text=message))], message_id=str(uuid4()),
+                                  context_id=context_id)
             responses = []
             async for response in client.send_message(message_obj):
                 responses.append(response)
