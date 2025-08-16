@@ -1,5 +1,5 @@
 [project]
-name = "a2a-multiple-agents-on-single-host"
+name = "multiple-agents-on-single-a2a-server"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
