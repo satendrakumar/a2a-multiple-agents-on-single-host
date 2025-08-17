@@ -106,7 +106,7 @@ Three agents running on the same host:
 
 ---
 
-## Docker builds and runs:
+## How to run inside Docker:
 ```bash
 # Docker build
 docker build -t multiple-agents-on-single-a2a-server:v1.0.0 .
