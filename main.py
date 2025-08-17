@@ -4,6 +4,7 @@ import os
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from src.a2a.a2a_utils import A2AUtils
 from src.agent.analyzer_agent import get_analyzer_agent, get_analyzer_agent_card
@@ -33,6 +34,13 @@ app: FastAPI = FastAPI(
     root_path="/a2a",
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health")
 async def health_check() -> dict[str, str]:
