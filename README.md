@@ -101,8 +101,46 @@ Three agents running on the same host:
             "lastChunk": true,
             "taskId": "23a93002-686b-4c8a-8bb6-ec649acea0c3"
         }
-    }    
+    }
+
+
+# Rquest with File:
+    curl --location --request POST 'http://localhost:8000/a2a/conversation/' \
+    --header 'Content-Type: application/json' \
+    --header 'Accept: text/event-stream' \
+    --data-raw '{
+        "id": "6a39c736-fff7-45f8-b2b0-c44e705d2474",
+        "jsonrpc": "2.0",
+        "method": "message/stream",
+        "params": {
+            "configuration": {
+                "acceptedOutputModes": [],
+                "blocking": "True"
+            },
+            "message": {
+                "contextId": "8bffff7b-3abc-4d85-bcce-0bcdbe321017",
+                "kind": "message",
+                "messageId": "82642fd2-f270-4a56-a7d9-5d26fddabc95",
+                "parts": [
+                    {
+                        "kind": "file",
+                        "file": {
+                            "name": "Attention Is All You Need",
+                            "uri": "gs://data-repository/documents/Attention-Is-All-You-Need.pdf",
+                            "mime_type": "application/pdf"
+                        }
+                    },
+                    {
+                        "kind": "text",
+                        "text": "What is Self-Attention ?"
+                    }
+                ],
+                "role": "user"
+            }
+        }
+    }'
    ```
+
 
 ---
 
